@@ -16,7 +16,7 @@ try {
 	$dbh = new PDO($dsn, $user, $pass);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	$s_errors["generic"][] = "ERRO[00]: ".$e->getMessage();
+	$error = "ERRO[00]: ".$e->getMessage();
 	echo $e->getMessage();
 	die;
 }

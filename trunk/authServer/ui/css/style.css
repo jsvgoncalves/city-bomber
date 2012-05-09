@@ -1,0 +1,43 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=latin,latin-ext);
+
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.header {
+	margin: 0 auto;
+	width: 960px;
+	text-align: center;
+}
+
+#content{
+	margin: 0 auto;
+	width: 960px;
+	background-color: #333;
+	border: 1px solid white;
+}
+
+p {
+	margin-left: 15px;
+}
+
+ul {
+	list-style: none;
+	overflow: hidden;
+}
+	ul li {
+		display: block;
+		margin-right: 30px;
+	}
+
+	ul li p {
+		margin-left: 15px;
+	}
+
+	ul li input {
+		margin: 0;
+		margin-right: 5px;
+		margin-bottom: 5px;
+	}

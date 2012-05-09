@@ -8,7 +8,7 @@
 		$hostPath = "http://localhost:8080/bomber/api/registerserver.php?";
 		
 		//Tries to register the server..
-		echo file_get_contents($hostPath . $string);
+		$msg =  file_get_contents($hostPath . $string);
 	}
 ?>
 
@@ -17,20 +17,25 @@
 <head>
 	<title>Register CityBomber Server</title>
 	<!--<script scr="form.js"> -->
-	
+	<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-<h1>Register CityBomber Server</h1>
-<form action="#" method="GET">
-	<ul>
-		<li><p>IP:</p></li>
-		<li><input type="text" name="ip"/></li>
-		<li><p>Port:</p></li>
-		<li><input type="text" name="port"/></li>
-		<li><p>Name:</p></li>
-		<li><input type="text" name="name"/></li>
-		<li><button>Registar</button></li>
-	</ul>
-</form>
+	<div id="wrapper">
+		<div class="header"><header><h1>Register CityBomber Server</h1></header></div>
+		
+		
+		<div id="content">
+			<p>Please enter the GameServer data.</p>
+			<form action="#" method="GET">
+				<ul>
+					<li><p>IP</p><input type="text" name="ip" id="ip"/></li>
+					<li><p>Port</p><input type="text" name="port" id="port"/></li>
+					<li><p>Name</p><input type="text" name="name" id="name"/></li>
+					<li><button>Registar</button></li>
+				</ul>
+			</form>
+			<p><?php echo $msg; ?></p>
+		</div>
+	</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 //database constants
 $user = 'postgres';	 //CHANGE ME
 $pass = 'pokemon';	 //CHANGE ME
-$dbname = 'bomber';	 //CHANGE ME
+$dbname = 'gameserver';	 //CHANGE ME
 $host = 'localhost';
 $port = '5432';
 

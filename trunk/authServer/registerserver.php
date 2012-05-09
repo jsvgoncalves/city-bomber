@@ -11,7 +11,7 @@ function registerserver()
 {
 	try{
 	
-		if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
+		if ( $_SERVER['REQUEST_METHOD'] === 'GET' )
 		{ 
 				
 				$db=connecttoserver();
@@ -26,9 +26,9 @@ function registerserver()
 				}
 
 				
-				$servername=$_POST["servername"];
-				$serverip=$_POST["serverip"];
-				$serverport=$_POST["serverport"];
+				$servername=$_GET["servername"];
+				$serverip=$_GET["serverip"];
+				$serverport=$_GET["serverport"];
 				$db=connecttoserver();
 				$sth=$db->prepare("INSERT INTO server.\"Server\" (name,ip,port) VALUES (:name,:ip,:port)");
 				$sth->bindParam(':name',$servername);

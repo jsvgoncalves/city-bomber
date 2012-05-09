@@ -1,17 +1,23 @@
 <?php
 
+//database constants
+$user = 'postgres';	 //CHANGE ME
+$pass = 'pokemon';	 //CHANGE ME
+$dbname = 'authserver';	 //CHANGE ME
+$host = 'localhost';
+$port = '5432';
 
+$dsn = 'pgsql:host='.$host.';port='.$port.';dbname='.$dbname;
 
+$schema = "public";
 
-function connecttoserver()
-{
-	   return new PDO("pgsql:host=localhost dbname=BOMBER port=60000 user=postgres password=54321");
-}
-
-
-
-
-
-
+	// get a (not persistent) database connection
+	try {
+		$dbh = new PDO($dsn, $user, $pass);
+		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch (PDOException $e) {
+		$s_errors["generic"][] = "ERRO[00]: ".$e->getMessage();
+		die;
+	}
 
 ?>

@@ -16,14 +16,18 @@ public final class R {
     public static final class id {
         public static final int ListViewId=0x7f050002;
         public static final int Refresh_btn=0x7f050001;
-        public static final int ip=0x7f050004;
+        public static final int back_btn=0x7f050006;
         public static final int servername=0x7f050003;
+        public static final int sessioninfo=0x7f050005;
+        public static final int sessionname=0x7f050004;
         public static final int title=0x7f050000;
     }
     public static final class layout {
         public static final int list_item=0x7f030000;
         public static final int main=0x7f030001;
         public static final int server_list=0x7f030002;
+        public static final int sessions_list=0x7f030003;
+        public static final int sessionsmain=0x7f030004;
     }
     public static final class string {
         public static final int Refresh=0x7f040002;

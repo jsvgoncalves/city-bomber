@@ -32,11 +32,14 @@ $serverData['name'] = $_GET["name"];
 if( $serverData['ip'] != null && $serverData['port']!= null && $serverData['name'] != null){
 	// Check server redundancy
 	if(Server::getServerByIPAndPort($serverData) == null){
+		// TODO Check the server;
+		//$_SERVER['REMOTE_ADDR'];
+		// TODO Check server name
 		$register = Server::registerServer($serverData);
 		if($register == 1){
 			showResult($result, $serverData);
 		} else {
-			showError("Failed to register server.", $serverData);
+			showError("Critical error registering server.", $serverData);
 		}
 	} else {
 		showError("Adress already in use.", $serverData);
@@ -47,7 +50,7 @@ if( $serverData['ip'] != null && $serverData['port']!= null && $serverData['name
 }
 
 function showError($error, $serverData){
-	echo json_encode(Array("srvFail" => $serverData, "error" => $error));
+	echo json_encode(Array("error" => $error, "srvFail" => $serverData));
 	die;
 }
 

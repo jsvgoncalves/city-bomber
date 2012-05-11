@@ -68,9 +68,9 @@ class Server{
 	    global $dbh, $schema;
 	    try {
 	      $sql = "INSERT INTO Server
-	      				(ip, port, name) 
+	      				(ip, port, name, lastUpdated) 
 	      			VALUES 
-	      				(?, ?, ?)";
+	      				(?, ?, ?, CURRENT_TIMESTAMP)";
 	      $stmt = $dbh->prepare($sql);
 	      $stmt->execute(array($serverData['ip'], $serverData['port'], $serverData['name']));
 	      $count = $stmt->rowCount();

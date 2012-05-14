@@ -28,11 +28,11 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		/*String server = "Server", ip="127.0.0.", port = "1500";
+		String server = "Server", ip="127.0.0.", port = "1500";
 		for(int i = 0; i < 500; i++)
 		{
 			servers.add(new ServerRecord(server + i, ip +i, port+i));
-		}*/
+		}
 				
 		return servers;
 		

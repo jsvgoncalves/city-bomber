@@ -4,8 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-permission android:name="android.permission.INTERNET" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-sdk android:minSdkVersion="10" />
 
@@ -21,11 +20,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Listagem das sessões -->
         <activity android:name=".Sessions" >
             <intent-filter>
                 <action android:name="android.intent.action.SessionsMain" />
             </intent-filter>
         </activity>
+        
+        
+        <!-- Creação de uma nova sessão -->
+        <activity android:name=".SessionCreate" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATESESSION" />
+            </intent-filter>
+        </activity>
+        
+        
     </application>
 
 </manifest>

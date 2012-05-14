@@ -1,16 +1,16 @@
 package cityBomber.network;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import Model.ServerRecord;
@@ -29,7 +29,12 @@ public class Communication {
 	public String getServerResponse()
 	{
 		ArrayList<ServerRecord> servers = new ArrayList<ServerRecord>();
-		HttpClient httpclient = new DefaultHttpClient();
+		HttpParams httpParams = new BasicHttpParams();
+		final int timeout = 2000; //ms
+		HttpConnectionParams.setConnectionTimeout(httpParams, timeout);
+		HttpConnectionParams.setSoTimeout(httpParams, timeout);
+		
+		HttpClient httpclient = new DefaultHttpClient(httpParams);
 		HttpGet request = new HttpGet(URL);
 		ResponseHandler<String> handler = new BasicResponseHandler();
 		

@@ -35,6 +35,16 @@ public class Sessions extends Activity {
 		TextView title = (TextView) findViewById(R.id.title);
 		title.setText("Server: " + Session.getServer().getServerName());
 		setSessionList();
+		Button create = (Button) findViewById(R.id.create_btn);
+		create.setText("Create Session");
+		create.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(getApplicationContext(), SessionCreate.class);
+                startActivityForResult(myIntent, -1);
+			}
+
+		});
+		
 		Button back = (Button) findViewById(R.id.back_btn);
 		back.setText("Voltar");
 		back.setOnClickListener(new View.OnClickListener() {

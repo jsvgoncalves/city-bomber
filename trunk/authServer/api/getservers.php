@@ -24,7 +24,7 @@
  *
  */
 
-require_once('database/database.php');
+require_once('includes/database.php');
 require_once('database/server.php');
 
 //TODO: Get inactive servers and query them to check for activity.

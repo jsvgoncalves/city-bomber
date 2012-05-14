@@ -21,7 +21,7 @@
 //			Dar uma key ao server para ele poder alterar dados?
 //			Dar opçao de apagar o registo do server?
 //			Verificar estado do server -> ping | usar a api (criar rest script imalive.php)
-require_once('database/database.php');
+require_once('includes/database.php');
 require_once('database/server.php');
 
 $serverData['ip']   = $_GET["ip"];

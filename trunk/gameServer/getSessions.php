@@ -1,7 +1,9 @@
 <?php
-require_once('database.php');
-require_once('session.php');
+require_once('includes/checklogin.php');
 
-echo json_encode(Array("sessionList" => Session::getAllSessions()));
+require_once('includes/database.php');
+require_once('database/gamesession.php');
+
+echo json_encode(Array("sessionList" => GameSession::getAllSessions()));
 
 ?>

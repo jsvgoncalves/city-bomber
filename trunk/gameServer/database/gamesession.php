@@ -1,6 +1,6 @@
 <?php
 
-class Session{
+class GameSession{
 	function getAllSessions() {
 	    global $dbh;
 	    try {
@@ -13,7 +13,8 @@ class Session{
 	    }
 	    catch(PDOException $e) {
 	      $_SESSION["s_errors"]["generic"][] = "ERRO[11]: ".$e->getMessage();
-	      header("Location: ../../index.php");
+	      echo $e->getMessage();
+	      //header("Location: ../../index.php");
 	      die;
 	    }
   	}

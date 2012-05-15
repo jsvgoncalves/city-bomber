@@ -13,9 +13,26 @@ class GameSession{
 	    }
 	    catch(PDOException $e) {
 	      $_SESSION["s_errors"]["generic"][] = "ERRO[11]: ".$e->getMessage();
-	      echo $e->getMessage();
-	      //header("Location: ../../index.php");
+	      header("Location: ../../index.php");
 	      die;
+	    }
+  	}
+
+  	function newSession($name, $maxplayers)
+  	{
+	    global $dbh, $schema;
+	    try {
+	      $sql = "INSERT INTO session (name, maxplayers) VALUES (?, ?)";
+	      $stmt = $dbh->prepare($sql);
+	      $stmt->execute(array($name, $maxplayers));
+	      $count = $stmt->rowCount();
+	      return $count;
+	    }
+	    catch(PDOException $e) {
+	      $errmsg = $e->getMessage();
+	      // parse errmsg
+	      $errors["generic"][] = "ERRO[14]: ".$errmsg;
+	      return $errors;
 	    }
   	}
 }

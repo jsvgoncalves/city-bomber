@@ -26,14 +26,16 @@ INSERT INTO server
 CREATE TABLE session (
     sid SERIAL PRIMARY KEY,
     nome VARCHAR(32) DEFAULT 'New Session',
-    maxplayers INTEGER DEFAULT 10
+    maxplayers INTEGER DEFAULT 10,
+    userid INTEGER NOT NULL,
+    FOREIGN KEY (userid) REFERENCES bomberuser(id)
 );
 
 INSERT INTO session
         (nome, maxplayers)
     VALUES
-        ('Couve flor', 12),
-        ('Beterraba', 5);
+        ('Novo Jogo', 12),
+        ('Jogo de bombas', 5);
 
 
 --

@@ -3,20 +3,55 @@
     package="cityBomber.logic"
     android:versionCode="1"
     android:versionName="1.0" >
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-library android:name="com.google.android.maps" />
     <uses-sdk android:minSdkVersion="10" />
+
     <application
+        android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".CityBomberActivity"
+            android:name=".EntryScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+         <!-- Menu de Login -->
+        <activity android:name=".LoginMenu" >
+            <intent-filter>
+                <action android:name="android.intent.action.LoginMenu" />
+            </intent-filter>
+        </activity>
+        
+        
+         <!-- Listagem dos servidores -->
+        <activity android:name=".Servers" >
+            <intent-filter>
+                <action android:name="android.intent.action.ServersMain" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Listagem das sessões -->
+        <activity android:name=".Sessions" >
+            <intent-filter>
+                <action android:name="android.intent.action.SessionsMain" />
+            </intent-filter>
+        </activity>
+        
+        
+        <!-- Creação de uma nova sessão -->
+        <activity android:name=".SessionCreate" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATESESSION" />
+            </intent-filter>
+        </activity>
+        
+        
     </application>
 
 </manifest>

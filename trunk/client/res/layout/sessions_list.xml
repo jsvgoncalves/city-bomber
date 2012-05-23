@@ -3,29 +3,38 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="left|center"
-    android:paddingBottom="5px"
-    android:paddingLeft="5px"
-    android:paddingTop="5px" >
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp" >
 
     <LinearLayout
         android:layout_width="0dip"
-        android:layout_height="fill_parent"
+        android:layout_height="45dp"
         android:layout_weight="1"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/sessionname"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
+            android:gravity="center"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:gravity="center" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/sessioninfo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginLeft="10dp"
             android:textColor="#999999" />
-       </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/locked_icon"
+        android:layout_gravity="center_vertical"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@+string/public_icon" />
+
 </LinearLayout>

@@ -2,33 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:layout_gravity="center"  >
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
-
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:contentDescription="@+string/app_logo" />
+    
+    <Button
+        android:id="@+id/play_btn"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="wrap_content"
+        android:text="@+string/Refresh" />
 
-        <Button
-            android:id="@+id/Refresh_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="@+string/Refresh" />
+    <Button
+        android:id="@+id/options_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+string/Refresh" />
 
-        <ListView
-            android:id="@+id/ListViewId"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" 
-            android:layout_above="@id/Refresh_btn" />
-    </RelativeLayout>
+    <Button
+        android:id="@+id/exit_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+string/Refresh" />
 
 </LinearLayout>

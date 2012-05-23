@@ -6,36 +6,95 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-library android:name="com.google.android.maps" />
+
     <uses-sdk android:minSdkVersion="10" />
 
     <application
+        android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".CityBomberActivity"
+            android:name=".EntryScreen"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
+ >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
+        <!-- Menu de Login -->
+        <activity
+            android:name=".LoginMenu"
+            android:configChanges="orientation|keyboardHidden" >
+ >
+            <intent-filter>
+                <action android:name="android.intent.action.LoginMenu" />
+            </intent-filter>
+        </activity>
+
+        <!-- Página de Login -->
+        <activity
+            android:name=".Login"
+            android:configChanges="orientation|keyboardHidden" >
+>
+            <intent-filter>
+                <action android:name="android.intent.action.LoginMenu" />
+            </intent-filter>
+        </activity>
+
+        <!-- Página de Registo -->
+        <activity
+            android:name=".Register"
+            android:configChanges="orientation|keyboardHidden" >
+>
+            <intent-filter>
+                <action android:name="android.intent.action.LoginMenu" />
+            </intent-filter>
+        </activity>
+
+        <!-- Listagem dos servidores -->
+        <activity
+            android:name=".Servers"
+            android:configChanges="orientation|keyboardHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.ServersMain" />
+            </intent-filter>
+        </activity>
+
         <!-- Listagem das sessões -->
-        <activity android:name=".Sessions" >
+        <activity
+            android:name=".Sessions"
+            android:configChanges="orientation|keyboardHidden" >
+>
             <intent-filter>
                 <action android:name="android.intent.action.SessionsMain" />
             </intent-filter>
         </activity>
-        
-        
-        <!-- Creação de uma nova sessão -->
-        <activity android:name=".SessionCreate" >
+
+        <!-- Criação de uma nova sessão -->
+        <activity
+            android:name=".SessionCreate"
+            android:configChanges="orientation|keyboardHidden" >
+>
             <intent-filter>
                 <action android:name="android.intent.action.CREATESESSION" />
             </intent-filter>
         </activity>
         
+         <!-- Jogo -->
+        <activity
+            android:name=".Game"
+            android:configChanges="orientation|keyboardHidden" >
+>
+
+            <intent-filter>
+                <action android:name="android.intent.action.Game" />
+            </intent-filter>
+        </activity>
         
     </application>
 

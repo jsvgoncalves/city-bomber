@@ -2,16 +2,20 @@ package Model;
 
 public class SessionRecord {
 
-	//“session” : “sala1”,  “max” : “16”, “joined” : “6”
-	private String sessionName, maxPlayers, joinedPlayers;
+	//ï¿½sessionï¿½ : ï¿½sala1ï¿½,  ï¿½maxï¿½ : ï¿½16ï¿½, ï¿½joinedï¿½ : ï¿½6ï¿½
+	private String sessionName;
+	private int id, maxPlayers, joinedPlayers;
+	private boolean privat;
 
 
 
-	public SessionRecord(String sessionName, String max, String joined)
+	public SessionRecord(String sessionName, int max, int joined, int id, boolean privat)
 	{
 		this.setSessionName(sessionName);
 		this.setMaxPlayers(max);
 		this.setJoinedPlayers(joined);
+		this.setId(id);
+		this.privat = privat;
 	}
 
 
@@ -28,26 +32,51 @@ public class SessionRecord {
 
 
 
-	public String getMaxPlayers() {
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public int getMaxPlayers() {
 		return maxPlayers;
 	}
 
 
 
-	public void setMaxPlayers(String maxPlayers) {
+	public void setMaxPlayers(int maxPlayers) {
 		this.maxPlayers = maxPlayers;
 	}
 
 
 
-	public String getJoinedPlayers() {
+	public int getJoinedPlayers() {
 		return joinedPlayers;
 	}
 
 
 
-	public void setJoinedPlayers(String joinedPlayers) {
+	public void setJoinedPlayers(int joinedPlayers) {
 		this.joinedPlayers = joinedPlayers;
+	}
+
+
+
+	public boolean isPrivat() {
+		return privat;
+	}
+
+
+
+	public void setPrivat(boolean privat) {
+		this.privat = privat;
 	}
 
 	

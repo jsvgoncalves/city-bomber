@@ -1,15 +1,15 @@
 <?php
 
 //database constants
-$user = 'postgres';
-$pass = 'asd';
-$dbname = 'bomber';
-$host = 'localhost';
-$port = '5432';
+$user = 'lbaw11103';	 //CHANGE ME
+$pass = 'sX796cu';	 //CHANGE ME
+$dbname = 'lbaw11103';	 //CHANGE ME
+$host = 'vdbm.fe.up.pt';
+//$host = 'localhost';
 
-$dsn = 'pgsql:host='.$host.';port='.$port.';dbname='.$dbname;
+$dsn = 'pgsql:host='.$host.';dbname='.$dbname;
 
-$schema = "public";
+$schema = "bomber";
 
 try {
 	$dbh = new PDO($dsn, $user, $pass);

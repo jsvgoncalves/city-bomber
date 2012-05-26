@@ -1,0 +1,1 @@
+"Português" "pt.jpg" "PT-PT.lang"

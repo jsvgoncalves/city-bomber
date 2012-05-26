@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="first_preferencescreen" >
+
+    <CheckBoxPreference android:key="sound_check" />
+
+    <CheckBoxPreference android:key="animations_check" />
+
+    <CheckBoxPreference android:key="satellite_check" />
+
+    <ListPreference
+        android:defaultValue="English"
+        android:key="language_spinner" >
+    </ListPreference>
+
+</PreferenceScreen>

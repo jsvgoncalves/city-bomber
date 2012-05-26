@@ -15,6 +15,9 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -45,33 +48,65 @@ public class Sessions extends Activity {
 		Language.setTextViewWord(Session.getLang().get("Sessionsat"), "Sessions@", title, Session.getServer().getServerName() + " (" + sessions.size() + ")");
 
 
-		Button create = (Button) findViewById(R.id.create_btn);
-		Language.setButtonWord(Session.getLang().get("Create Session"), "Create Session", create);
-
-		create.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent myIntent = new Intent(getApplicationContext(), SessionCreate.class);
-				startActivityForResult(myIntent, -1);
-			}
-
-		});
-
-		Button back = (Button) findViewById(R.id.back_btn);
-		Language.setButtonWord(Session.getLang().get("Back"), "Back", back);
-		back.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent intent = new Intent();
-				setResult(RESULT_OK, intent);
-				finish();
-			}
-
-		});
 		CommunicationAsync c = new CommunicationAsync();
 		c.execute();
 		
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
 
+		// Create and add new menu items.
+		MenuItem itemRefresh = menu.add(Language.getTranslation(Session.getLang().get("Refresh"), "Refresh"));
+		MenuItem itemCreateSess = menu.add(Language.getTranslation(Session.getLang().get("Create Session"), "Create Session"));
+		MenuItem itemBack = menu.add(Language.getTranslation(Session.getLang().get("Back"), "Back"));
+		
+
+		// Allocate shortcuts to each of them.
+		itemRefresh.setIcon(R.drawable.refresh);
+		itemRefresh.setShortcut('0', 'a');
+		itemRefresh.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				// TODO Auto-generated method stub
+				CommunicationAsync c = new CommunicationAsync();
+				c.execute();
+				return true;
+			}
+
+		});
+		itemBack.setIcon(R.drawable.back);
+		itemBack.setShortcut('1', 'r');
+		itemBack.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				setResult(RESULT_OK, intent);
+				finish();
+				return true;
+			}
+
+		});
+		
+		itemCreateSess.setIcon(R.drawable.add);
+		itemCreateSess.setShortcut('1', 'r');
+		itemCreateSess.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				// TODO Auto-generated method stub
+				Intent myIntent = new Intent(getApplicationContext(), SessionCreate.class);
+                startActivityForResult(myIntent, -1);
+				return true;
+			}
+
+		});
+		
+		return true;
+	}
+	
+	
 	public void setSessionList()
 	{
 		
@@ -164,13 +199,15 @@ public class Sessions extends Activity {
 
 	}
 	
+	
+	
 	private class CommunicationAsync extends  AsyncTask<Void, Void, Void>
 	{
 		private ProgressDialog dialg;
 		@Override
 		protected void onPreExecute() {
 			dialg = new ProgressDialog(Sessions.this);
-			dialg.setMessage(Language.getTranslation(Session.getLang().get("ServersRetrMsg"), "Retrieving servers list. Please wait..."));
+			dialg.setMessage(Language.getTranslation(Session.getLang().get("SessionsRetrMsg"), "Retrieving servers list. Please wait..."));
 			dialg.setCancelable(false);
 			dialg.show();			
 		}
@@ -182,10 +219,17 @@ public class Sessions extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
-			Communication sessionsinfo = new Communication("http://" + Session.getServer().getIp() +":"+ Session.getServer().getPort() + "/bomberman/gameserver/getsessions.php");//ALTERAR
+			Communication sessionsinfo = new Communication("http://" + Session.getServer().getIp() +":"+ Session.getServer().getPort() + "/getsessions");//ALTERAR
 			sessions = Controller.getSessionList(sessionsinfo.getServerResponse());			
 			return null;
 		}
 
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{  // After a pause OR at startup	
+		CommunicationAsync c = new CommunicationAsync();
+		c.execute();
 	}
 }

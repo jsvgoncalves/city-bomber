@@ -52,7 +52,6 @@ public class Controller {
 			for(int i = 0; i < arraysize; i++)
 			{
 				s = new SessionRecord(serverArray.getJSONObject(i).getString("name").toString(), serverArray.getJSONObject(i).getInt("maxplayers"), serverArray.getJSONObject(i).getInt("joined"), serverArray.getJSONObject(i).getInt("sid"), serverArray.getJSONObject(i).getBoolean("private"));
-				System.out.println("SYSTEM: " + s.getSessionName());
 				sessions.add(s);				
 			}
 		} catch (Exception e) {
@@ -70,7 +69,7 @@ public class Controller {
 	}
 	public static boolean isError(JSONObject jObject)
 	{
-
+		
 		try {
 
 			if(jObject.has("error"))

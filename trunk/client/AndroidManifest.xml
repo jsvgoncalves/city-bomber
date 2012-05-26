@@ -17,8 +17,8 @@
         <activity
             android:name=".EntryScreen"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name" >
- >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +30,18 @@
         <activity
             android:name=".LoginMenu"
             android:configChanges="orientation|keyboardHidden" >
- >
             <intent-filter>
                 <action android:name="android.intent.action.LoginMenu" />
+            </intent-filter>
+        </activity>
+
+        <!-- Opções -->
+        <activity
+            android:name=".Options"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.options" />
             </intent-filter>
         </activity>
 
@@ -40,9 +49,8 @@
         <activity
             android:name=".Login"
             android:configChanges="orientation|keyboardHidden" >
->
             <intent-filter>
-                <action android:name="android.intent.action.LoginMenu" />
+                <action android:name="android.intent.action.Login" />
             </intent-filter>
         </activity>
 
@@ -50,7 +58,7 @@
         <activity
             android:name=".Register"
             android:configChanges="orientation|keyboardHidden" >
->
+>
             <intent-filter>
                 <action android:name="android.intent.action.LoginMenu" />
             </intent-filter>
@@ -69,7 +77,7 @@
         <activity
             android:name=".Sessions"
             android:configChanges="orientation|keyboardHidden" >
->
+>
             <intent-filter>
                 <action android:name="android.intent.action.SessionsMain" />
             </intent-filter>
@@ -79,23 +87,21 @@
         <activity
             android:name=".SessionCreate"
             android:configChanges="orientation|keyboardHidden" >
->
+>
             <intent-filter>
                 <action android:name="android.intent.action.CREATESESSION" />
             </intent-filter>
         </activity>
-        
-         <!-- Jogo -->
+
+        <!-- Jogo -->
         <activity
             android:name=".Game"
             android:configChanges="orientation|keyboardHidden" >
->
-
+>
             <intent-filter>
                 <action android:name="android.intent.action.Game" />
             </intent-filter>
         </activity>
-        
     </application>
 
 </manifest>

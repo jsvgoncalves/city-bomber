@@ -12,6 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -62,45 +65,49 @@ public class SessionCreate extends Activity{
 
 
 		initializeSpinnerValues();
-		Button create = (Button) findViewById(R.id.submit_btn);
-		Language.setButtonWord(Session.getLang().get("Create"), "Create", create);
-		create.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				if(sessionname_txt.getText().length() == 0)
-				{
-					AlertDialog.Builder builder = new AlertDialog.Builder(SessionCreate.this);
-					builder.setMessage(Language.getTranslation(Session.getLang().get("SessionNameErr"), "Please specify a session name."));
-					builder.setCancelable(false);
-					builder.setNeutralButton("ok", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-					builder.setIcon(R.drawable.ic_launcher);       
-					AlertDialog alert = builder.create();
-					alert.show();
-				}
-				else
-				{
-					new CommunicationAsync().execute();						
-				}
+
+	}
 
 
-			}
-		});
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
 
-		Button back = (Button) findViewById(R.id.back_btn2);
-		Language.setButtonWord(Session.getLang().get("Back"), "Back", back);
-		back.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
+		// Create and add new menu items.
+		MenuItem itemCreateSess = menu.add(Language.getTranslation(Session.getLang().get("Criar"), "Criar"));
+		MenuItem itemBack = menu.add(Language.getTranslation(Session.getLang().get("Back"), "Back"));
+
+
+		itemBack.setIcon(R.drawable.back);
+		itemBack.setShortcut('1', 'r');
+		itemBack.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				setResult(RESULT_OK, intent);
 				finish();
+				return true;
 			}
 
 		});
-	}
 
+		itemCreateSess.setIcon(R.drawable.add);
+		itemCreateSess.setShortcut('1', 'r');
+		itemCreateSess.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+
+
+				return true;
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+
+		return true;
+	}
 
 	public void initializeSpinnerValues()
 	{
@@ -171,7 +178,7 @@ public class SessionCreate extends Activity{
 			else
 			{
 				AlertDialog.Builder builder = new AlertDialog.Builder(SessionCreate.this);
-				builder.setMessage(Language.getTranslation(Session.getLang().get(""), "An error Ocurred"));
+				builder.setMessage(Language.getTranslation(Session.getLang().get(""), response));
 				builder.setCancelable(false);
 				builder.setNeutralButton("ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
@@ -188,7 +195,9 @@ public class SessionCreate extends Activity{
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			ServerRecord s = Session.getServer();
-			String text = "http://" + s.getIp() + ":" + s.getPort() + "/bomberman/gameserver/newsession.php?name=" + sessionname_txt.getText() + "&max=" + maxspinner.getSelectedItem().toString() + "&userid=" + 1 + "&private=" + b + "&password=" + password_txt.getText();
+
+			String text = "http://" + s.getIp() + ":" + s.getPort() + "/createsession?name=" + sessionname_txt.getText() + "&max=" + maxspinner.getSelectedItem().toString() + "&userid=" + 1 + "&private=" + b + "&password=" + password_txt.getText();
+
 			serversinfo = new Communication(text);		
 			response = Controller.getSessionCreateResponse(serversinfo.getServerResponse());
 

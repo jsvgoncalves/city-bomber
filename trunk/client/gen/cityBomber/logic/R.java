@@ -11,67 +11,72 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int ic_launcher2=0x7f020001;
+        public static final int add=0x7f020000;
+        public static final int back=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int refresh=0x7f020003;
     }
     public static final class id {
-        public static final int ListViewId=0x7f050019;
+        public static final int ListViewId=0x7f05001a;
         public static final int Password_lbl=0x7f050007;
-        public static final int Refresh_btn=0x7f050018;
         public static final int SessionCreate_lbl=0x7f050000;
         public static final int SessionName_lbl=0x7f050001;
         public static final int SessionName_txt=0x7f050002;
         public static final int SessionType_lbl=0x7f050005;
-        public static final int back_btn=0x7f05001d;
-        public static final int back_btn2=0x7f05000a;
-        public static final int create_btn=0x7f05001e;
-        public static final int exit_btn=0x7f050012;
-        public static final int guest_btn=0x7f05000e;
-        public static final int locked_icon=0x7f05001c;
-        public static final int login_btn=0x7f05000b;
-        public static final int logo=0x7f05000c;
-        public static final int main_menu_btn=0x7f05000f;
+        public static final int back_btn=0x7f05000f;
+        public static final int exit_btn=0x7f050016;
+        public static final int flag=0x7f05000a;
+        public static final int guest_btn=0x7f050012;
+        public static final int language_lbl=0x7f050009;
+        public static final int locked_icon=0x7f05001d;
+        public static final int login_btn=0x7f05000e;
+        public static final int logo=0x7f050010;
+        public static final int main_menu_btn=0x7f050013;
         public static final int maxPlayers=0x7f050004;
         public static final int maxPlayers_lbl=0x7f050003;
-        public static final int options_btn=0x7f050011;
-        public static final int password_lbl=0x7f050015;
+        public static final int options_btn=0x7f050015;
+        public static final int options_title=0x7f050017;
+        public static final int password_lbl=0x7f05000d;
         public static final int password_txt=0x7f050008;
-        public static final int play_btn=0x7f050010;
-        public static final int register_btn=0x7f05000d;
-        public static final int servername=0x7f050016;
-        public static final int sessioninfo=0x7f05001b;
-        public static final int sessionname=0x7f05001a;
+        public static final int play_btn=0x7f050014;
+        public static final int register_btn=0x7f050011;
+        public static final int servername=0x7f050018;
+        public static final int sessioninfo=0x7f05001c;
+        public static final int sessionname=0x7f05001b;
         public static final int sessiontype=0x7f050006;
-        public static final int submit_btn=0x7f050009;
-        public static final int title=0x7f050017;
-        public static final int username_lbl=0x7f050013;
-        public static final int username_txt=0x7f050014;
+        public static final int title=0x7f050019;
+        public static final int user_lbl=0x7f05000b;
+        public static final int user_txt=0x7f05000c;
     }
     public static final class layout {
         public static final int create_session=0x7f030000;
-        public static final int list_item=0x7f030001;
-        public static final int login=0x7f030002;
-        public static final int loginmenu=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int register=0x7f030005;
-        public static final int server_list=0x7f030006;
-        public static final int serversmain=0x7f030007;
-        public static final int sessions_list=0x7f030008;
-        public static final int sessionsmain=0x7f030009;
+        public static final int languagelist=0x7f030001;
+        public static final int list_item=0x7f030002;
+        public static final int login=0x7f030003;
+        public static final int loginmenu=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int options=0x7f030006;
+        public static final int optionsmain=0x7f030007;
+        public static final int register=0x7f030008;
+        public static final int server_list=0x7f030009;
+        public static final int serversmain=0x7f03000a;
+        public static final int sessions_list=0x7f03000b;
+        public static final int sessionsmain=0x7f03000c;
     }
     public static final class string {
-        public static final int Create=0x7f040003;
-        public static final int Create_Session=0x7f04000c;
-        public static final int Refresh=0x7f04000a;
+        public static final int Create=0x7f040004;
+        public static final int Options=0x7f04000c;
+        public static final int Refresh=0x7f04000b;
         public static final int Session_Name=0x7f040002;
-        public static final int Voltar=0x7f040004;
-        public static final int app_logo=0x7f040005;
+        public static final int Voltar=0x7f040005;
+        public static final int app_logo=0x7f040006;
         public static final int app_name=0x7f040001;
-        public static final int guest=0x7f040008;
+        public static final int country_flag=0x7f040003;
+        public static final int guest=0x7f040009;
         public static final int hello=0x7f040000;
-        public static final int login=0x7f040006;
-        public static final int menu=0x7f040009;
-        public static final int public_icon=0x7f04000b;
-        public static final int register=0x7f040007;
+        public static final int login=0x7f040007;
+        public static final int menu=0x7f04000a;
+        public static final int public_icon=0x7f04000d;
+        public static final int register=0x7f040008;
     }
 }

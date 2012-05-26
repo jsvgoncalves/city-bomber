@@ -39,8 +39,8 @@ public class LoginMenu extends Activity{
 		Language.setButtonWord(Session.getLang().get("Login"), "Login", login_btn);
 		login_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				/*Intent myIntent = new Intent(getApplicationContext(), Servers.class);
-				startActivityForResult(myIntent, 0);*/
+				Intent myIntent = new Intent(getApplicationContext(), Login.class);
+				startActivityForResult(myIntent, 0);
 			}
 
 		});
@@ -50,7 +50,8 @@ public class LoginMenu extends Activity{
 		Language.setButtonWord(Session.getLang().get("Register"), "Register", register_btn);
 		register_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				
+				Intent myIntent = new Intent(getApplicationContext(), Register.class);
+				startActivityForResult(myIntent, 0);
 			}
 
 		});

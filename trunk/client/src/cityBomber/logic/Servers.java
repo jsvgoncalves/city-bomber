@@ -8,9 +8,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,51 +46,71 @@ public class Servers extends Activity{
 
 		setContentView(R.layout.serversmain);     				
 
-		
-
 		title = (TextView) findViewById(R.id.title);		
 		Language.setTextViewWord(Session.getLang().get("Server"), "Servers", title, " (" + servers.size() + ")");
 
-		Button refresh_btn = (Button) findViewById(R.id.Refresh_btn);
+		CommunicationAsync c = new CommunicationAsync();
+		c.execute();
 
-		Language.setButtonWord(Session.getLang().get("Refresh"), "Refresh", refresh_btn);
 
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
 
-		refresh_btn.setOnClickListener(new OnClickListener() {
+		// Create and add new menu items.
+		MenuItem itemRefresh = menu.add(Language.getTranslation(Session.getLang().get("Refresh"), "Refresh"));
+		MenuItem itemBack = menu.add(Language.getTranslation(Session.getLang().get("Back"), "Back"));
 
+		// Allocate shortcuts to each of them.
+		itemRefresh.setIcon(R.drawable.refresh);
+		itemRefresh.setShortcut('0', 'a');
+		itemRefresh.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			@Override
-			public void onClick(View v) {
+			public boolean onMenuItemClick(MenuItem item) {
 				// TODO Auto-generated method stub
 				CommunicationAsync c = new CommunicationAsync();
 				c.execute();
+				return true;
 			}
-		});
-		CommunicationAsync c = new CommunicationAsync();
-		c.execute();
-		
 
+		});
+		itemBack.setIcon(R.drawable.back);
+		itemBack.setShortcut('1', 'r');
+		itemBack.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				setResult(RESULT_OK, intent);
+				finish();
+				return true;
+			}
+
+		});
+		return true;
 	}
 
 	public void setServerList()
 	{
 		/*Communication serversinfo = new Communication(ServersInfo.getAuthServer());	
 		servers = Controller.getServerList(serversinfo.getServerResponse());*/
-			listView = (ListView) findViewById(R.id.ListViewId);
-			listView.setAdapter(new ServerItemAdapter(Servers.this, android.R.layout.simple_list_item_1, servers));
-			Language.setTextViewWord(Session.getLang().get("Server"), "Servers", title, " (" + servers.size() + ")");
-			listView.setOnItemClickListener(new OnItemClickListener() {
-				
+		listView = (ListView) findViewById(R.id.ListViewId);
+		listView.setAdapter(new ServerItemAdapter(Servers.this, android.R.layout.simple_list_item_1, servers));
+		Language.setTextViewWord(Session.getLang().get("Server"), "Servers", title, " (" + servers.size() + ")");
+		listView.setOnItemClickListener(new OnItemClickListener() {
 
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-						long arg3) {
-	
-					Session.setServer(((ServerRecord)listView.getItemAtPosition(arg2)));
-					Intent myIntent = new Intent(getApplicationContext(), Sessions.class);
-					startActivityForResult(myIntent, 0);
 
-				}                 
-			});
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+
+				Session.setServer(((ServerRecord)listView.getItemAtPosition(arg2)));
+				Intent myIntent = new Intent(getApplicationContext(), Sessions.class);
+				startActivityForResult(myIntent, 0);
+
+			}                 
+		});
 	}
 
 	public class ServerItemAdapter extends ArrayAdapter<ServerRecord> {
@@ -122,7 +148,7 @@ public class Servers extends Activity{
 		}
 
 	}
-	
+
 
 	private class CommunicationAsync extends  AsyncTask<Void, Void, Void>
 	{
@@ -144,7 +170,7 @@ public class Servers extends Activity{
 			// TODO Auto-generated method stub
 			Communication serversinfo = new Communication(ServersInfo.getAuthServer());	
 			servers = Controller.getServerList(serversinfo.getServerResponse());
-			
+
 			return null;
 		}
 

@@ -27,6 +27,7 @@ public class Communication {
 			HttpConnectionParams.setConnectionTimeout(httpParams, timeout);
 			HttpConnectionParams.setSoTimeout(httpParams, timeout);
 			HttpClient httpclient = new DefaultHttpClient(httpParams);
+			this.URL = this.URL.replaceAll(" ", "%20");
 			HttpGet request = new HttpGet(URL);
 			ResponseHandler<String> handler = new BasicResponseHandler();
 			result = httpclient.execute(request, handler);

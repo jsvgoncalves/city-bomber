@@ -4,32 +4,38 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    
-	<TextView
+    <TextView
         android:id="@+id/user_lbl"
-        android:textSize="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@+string/Session_Name" />
+        android:text="@+string/Session_Name"
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/user_txt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text" />
-	<TextView
+
+    <TextView
         android:id="@+id/password_lbl"
-        android:textSize="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@+string/Session_Name" />
-   
+        android:text="@+string/Session_Name"
+        android:textSize="30dp" />
+
     <EditText
         android:id="@+id/password_txt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword" />
-    
+
+    <Button
+        android:id="@+id/facelogin_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:drawableLeft="@drawable/facelogin"/>
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >

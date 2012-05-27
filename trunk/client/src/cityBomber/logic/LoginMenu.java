@@ -1,5 +1,10 @@
 package cityBomber.logic;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cityBomber.network.Communication;
+import Model.Session;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -60,7 +65,7 @@ public class LoginMenu extends Activity{
 		Language.setButtonWord(Session.getLang().get("Guest"), "Guest", guest_btn);
 		guest_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-									
+				
 				Intent myIntent = new Intent(getApplicationContext(), Servers.class);
 				startActivityForResult(myIntent, 0);
 			}

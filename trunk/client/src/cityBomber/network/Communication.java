@@ -33,6 +33,7 @@ public class Communication {
 			result = httpclient.execute(request, handler);
 			httpclient.getConnectionManager().shutdown();		
 		} catch (Exception e) {
+			System.out.println("CONNECTION TIMED OUT");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 

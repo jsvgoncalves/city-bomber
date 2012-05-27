@@ -1,6 +1,7 @@
 package cityBomber.logic;
 
 import Model.LanguageRecord;
+import Model.Session;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;

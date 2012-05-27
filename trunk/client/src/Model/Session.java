@@ -1,18 +1,17 @@
-package cityBomber.logic;
+package Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import Model.LanguageRecord;
-import Model.ServerRecord;
 
 public class Session {
 
-	private static String language = "English";
-	private static boolean sound = true;
-	private static boolean animations = true;
-	private static boolean satellite = true;
+	private static String language, username,  userid="-1", email, name;
+	private static boolean sound;
+	private static boolean animations;
+	private static boolean satellite;
 	private static ArrayList<LanguageRecord> languages = new ArrayList<LanguageRecord>();	
 	private static ServerRecord server;
+	private static SessionRecord session;
 	private static HashMap<String, String> lang = new HashMap<String, String>();;
 
 	public static ServerRecord getServer() {
@@ -64,6 +63,19 @@ public class Session {
 	public static boolean isSatellite() {
 		return satellite;
 	}
+	
+	public static String getUsername()
+	{
+		return username;
+	}
+	
+	
+	public static void setSessionId(int id)
+	{
+		Session.session.setId(id);
+	}
+	
+	
 
 	public static void setSatellite(boolean satellite) {
 		Session.satellite = satellite;
@@ -108,5 +120,49 @@ public class Session {
 		return val;
 
 	}
+
+	public static SessionRecord getSession() {
+		return session;
+	}
+
+	public static void setSession(SessionRecord session) {
+		Session.session = session;
+	}
+
+	public static void setUsername(String user) {
+		// TODO Auto-generated method stub
+		username=user;
+	}
+	
+	public static void setUserId(String id1)
+	{
+		userid=id1;
+	}
+
+	public static String getUserId() {
+		// TODO Auto-generated method stub
+		return userid;
+	}
+
+	public static void setEmail(String string) {
+		// TODO Auto-generated method stub
+		email=string;
+	}
+	
+	
+	public static String getEmail()
+	{
+		return email;
+	}
+
+	public static String getName() {
+		return name;
+	}
+
+	public static void setName(String name) {
+		Session.name = name;
+	}
+	
+	
 
 }

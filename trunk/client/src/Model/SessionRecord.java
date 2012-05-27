@@ -17,7 +17,15 @@ public class SessionRecord {
 		this.setId(id);
 		this.privat = privat;
 	}
-
+	
+	
+	public SessionRecord(String sessionName, int max, int joined,boolean privat)
+	{
+		this.setSessionName(sessionName);
+		this.setMaxPlayers(max);
+		this.setJoinedPlayers(joined);
+		this.privat = privat;
+	}
 
 
 	public String getSessionName() {

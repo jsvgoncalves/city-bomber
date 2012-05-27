@@ -1,9 +1,14 @@
 package cityBomber.logic;
 
 import java.util.ArrayList;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cityBomber.network.Communication;
 import cityBomber.network.ServersInfo;
 import Model.ServerRecord;
+import Model.Session;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,6 +41,7 @@ public class Servers extends Activity{
 	private ArrayList<ServerRecord> servers = new ArrayList<ServerRecord>();
 	private ListView listView ;
 	private TextView title ;
+	Context c = Servers.this;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -104,8 +110,29 @@ public class Servers extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-
 				Session.setServer(((ServerRecord)listView.getItemAtPosition(arg2)));
+				if(Session.getUserId()=="-1" || Session.getUserId()==null)
+				{
+					
+					
+					Communication com = new Communication("http://" + Session.getServer().getIp() + ":" + Session.getServer().getPort() + "/getid" );
+					//System.out.println("link:" + "http://" + Session.getServer().getIp() + ":" + Session.getServer().getPort() + "/update?sid=" + Session.getId() + "&uid=" +Session.getUserId() + "&ukey=" + Session.getUserId() + "&lat="+ lat + "&lon=" + lng +"&b=" + putbomb );
+					String result = com.getServerResponse();
+					if(result==null)
+					{
+						System.out.println("é nulo");
+					}
+					try {
+						JSONObject json=new JSONObject(result);
+						Session.setUserId(json.getString("uid"));
+						Session.setUsername("Guest" + Session.getUserId());
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				
 				Intent myIntent = new Intent(getApplicationContext(), Sessions.class);
 				startActivityForResult(myIntent, 0);
 
@@ -155,7 +182,7 @@ public class Servers extends Activity{
 		private ProgressDialog dialg;
 		@Override
 		protected void onPreExecute() {
-			dialg = new ProgressDialog(Servers.this);
+			dialg = new ProgressDialog(c);
 			dialg.setMessage(Language.getTranslation(Session.getLang().get("ServersRetrMsg"), "Retrieving servers list. Please wait..."));
 			dialg.setCancelable(false);
 			dialg.show();			

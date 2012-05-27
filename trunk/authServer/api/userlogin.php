@@ -22,11 +22,11 @@
 
 require_once('includes/database.php');
 require_once('database/user.php');
-require_once('fb/facebook.php');
 
 $userData['fbid'] = $_GET['fbid'];
-$userData['id']   = $_GET['id'];
+$userData['email']   = $_GET['email'];
 $userData['pw']   = $_GET['pw'];
+$userData['username']   = $_GET['name'];
 
 // Checks if the user is logging with facebook
 if($userData['fbid'] != null && strlen($userData['fbid']) > 0) {
@@ -34,29 +34,29 @@ if($userData['fbid'] != null && strlen($userData['fbid']) > 0) {
 	if($user != null) {
 		showResult($user);
 	} else {
-		// CREATE THE FACEBOOK OAUTH VAR
-		$facebook = new Facebook(array(
-		  'appId'  => '222377161214377',
-		  'secret' => '739f81bdd32fe2ca3e7a2af767964eb2',
-		));
-		$userfb = $facebook->api('/'. $userData['fbid']);
+		// Checking if email was sent sent.
+		if( strlen($userData['email']) > 0 && 
+			strlen($userData['username']) > 0) {
 
-		if(strlen($userfb['name']) > 0) {
-			// TODO
-			echo $userfb['education'][0]['school']['name'];
-			//$user = User::insertUserByFBID($userData['fbid'], $userfb['name']);
+			$userData['password'] = "IMPOSSIBRU";
+			$userData['salt'] = "MARINE";
+			$user = User::insertUserByFBID($userData);
+			$userReturn = User::getUserByMail($userData['email']);
+			showResult($userReturn);
+		} else {
+			showError("No such fb user and not enough data to register.");
 		}
 	}
 } 
 // Logging in without facebook
-else if($userData['id'] != null && strlen($userData['id']) > 0 &&
+else if($userData['email'] != null && strlen($userData['email']) > 0 &&
 		$userData['pw'] != null && strlen($userData['pw']) > 0) {
-	$user = User::getUserByIDPW($userData['id'], $userData['pw']);
+	$user = User::getUserByMailPW($userData['email'], $userData['pw']);
 	if($user != null) {
-		$userReturn = User::getUserByID($userData['id']);
+		$userReturn = User::getUserByMail($userData['email']);
 		showResult($userReturn);
 	} else {
-		showError("Invalid user.", $userData);
+		showError("Invalid login data.", $userData);
 	}
 } 
 // Invalid GET data.

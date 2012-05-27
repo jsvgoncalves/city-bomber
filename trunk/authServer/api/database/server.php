@@ -8,16 +8,15 @@
 class Server{
 	
 	function getAllServers() {
-	    global $dbh;
+	    global $dbh, $schema;
 	    try {
-	      $stmt = $dbh->prepare("SELECT name, ip, port FROM server");
+	      $stmt = $dbh->prepare("SELECT name, ip, port FROM $schema.server");
 	      $stmt->execute();
 	      $result = $stmt->fetchall(PDO::FETCH_ASSOC);
 	      return $result;
 	    }
 	    catch(PDOException $e) {
-	      $_SESSION["s_errors"]["generic"][] = "ERRO[11]: ".$e->getMessage();
-	      header("Location: ../../index.php");
+	      echo $e->getMessage();
 	      die;
 	    }
   	}
@@ -26,18 +25,17 @@ class Server{
   	 * Returns all active servers.
   	 */
   	function getAllActiveServers() {
-	    global $dbh;
+	    global $dbh, $schema;
 	    try {
 	      $stmt = $dbh->prepare("SELECT name, ip, port 
-	      						FROM server
+	      						FROM $schema.server
 	      						WHERE lastUpdated > CURRENT_TIMESTAMP - time '03:00'");
 	      $stmt->execute();
 	      $result = $stmt->fetchall(PDO::FETCH_ASSOC);
 	      return $result;
 	    }
 	    catch(PDOException $e) {
-	      $_SESSION["s_errors"]["generic"][] = "ERRO[11]: ".$e->getMessage();
-	      header("Location: ../../index.php");
+	      echo $e->getMessage();
 	      die;
 	    }
   	}
@@ -47,9 +45,9 @@ class Server{
 	    global $dbh, $schema;
 	    try {
 	      $stmt = $dbh->prepare("SELECT * 
-	        FROM Server 
-	        WHERE Server.ip = :serverIP
-	        AND Server.port = :serverPort");
+	        FROM $schema.Server 
+	        WHERE $schema.Server.ip = :serverIP
+	        AND $schema.Server.port = :serverPort");
 	      $stmt->bindParam(':serverIP', $serverData['ip'], PDO::PARAM_INT);
 	      $stmt->bindParam(':serverPort', $serverData['port'], PDO::PARAM_INT);
 	      $stmt->execute();
@@ -57,7 +55,6 @@ class Server{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      $_SESSION["s_errors"]["generic"][] = "ERRO[22]: ".$e->getMessage();
 	      echo $e->getMessage();
 	      die;
     	}
@@ -67,7 +64,7 @@ class Server{
 	function registerServer($serverData) {
 	    global $dbh, $schema;
 	    try {
-	      $sql = "INSERT INTO Server
+	      $sql = "INSERT INTO $schema.Server
 	      				(ip, port, name, lastUpdated) 
 	      			VALUES 
 	      				(?, ?, ?, CURRENT_TIMESTAMP)";
@@ -77,10 +74,8 @@ class Server{
 	      return $count;
 	    }
 	    catch(PDOException $e) {
-	      $errmsg = $e->getMessage();
-	      // parse errmsg
-	      $errors["generic"][] = "ERRO[14]: ".$errmsg;
-	      return $errors;
+	      echo $e->getMessage();
+	      die;
 	    }
 	}
 }

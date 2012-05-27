@@ -1,5 +1,6 @@
 <?php 
-	$msg =  file_get_contents("http://localhost:8080/bomber/api/getservers.php");
+	require_once('cfg/cfg.php');
+	$msg =  file_get_contents($serverURL . "api/getservers.php");
 	$servers = json_decode($msg, true);
 ?>
 
@@ -7,7 +8,6 @@
 <html>
 <head>
 	<title>CityBomber Server List</title>
-	<!--<script scr="form.js"> -->
 	<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>

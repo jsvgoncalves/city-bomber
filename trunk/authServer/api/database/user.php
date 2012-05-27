@@ -8,13 +8,13 @@
 class User{
 	
 
-	function getUserByIDPW($id, $password) {
+	function getUserByMailPW($email, $password) {
 	    global $dbh, $schema;
 	    try {
 	      $stmt = $dbh->prepare("SELECT * 
 	        FROM $schema.BomberUser 
-	        WHERE $schema.BomberUser.id = :id");
-	      $stmt->bindParam(':id', $id);
+	        WHERE $schema.BomberUser.email = :email");
+	      $stmt->bindParam(':email', $email);
 	      $stmt->execute();
 	      // get next row as an array indexed by column name
 	      $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,8 +26,7 @@ class User{
 		       return false;
 	    }
 	    catch(PDOException $e) {
-	      $_SESSION["s_errors"]["generic"][] = "ERRO[36]: ".$e->getMessage();
-	      header("Location: index.php");
+	      echo $e->getMessage();
 	      die;
 	    }
 	}
@@ -44,7 +43,6 @@ class User{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      $_SESSION["s_errors"]["generic"][] = "ERRO[22]: ".$e->getMessage();
 	      echo $e->getMessage();
 	      die;
     	}
@@ -62,31 +60,64 @@ class User{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      $_SESSION["s_errors"]["generic"][] = "ERRO[22]: ".$e->getMessage();
 	      echo $e->getMessage();
 	      die;
     	}
 	}
 
-	function insertUserByFBID($userData) {
+	function getUserByMail($email) {
 	    global $dbh, $schema;
 	    try {
-	      $sql = "INSERT INTO Server
-	      				(ip, port, name, lastUpdated) 
+	      $stmt = $dbh->prepare("SELECT id, username, email, fbID, faceUser 
+	        FROM $schema.BomberUser 
+	        WHERE $schema.BomberUser.email = :email");
+	      $stmt->bindParam(':email', $email, PDO::PARAM_INT);
+	      $stmt->execute();
+	      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+	      return ($result);
+	    }
+	    catch(PDOException $e) {
+	      echo $e->getMessage();
+	      die;
+    	}
+	}
+
+	function insertUserByEmail($userData) {
+	    global $dbh, $schema;
+	    try {
+	      $sql = "INSERT INTO $schema.BomberUser
+	      				(username, email, password, salt) 
 	      			VALUES 
-	      				(?, ?, ?, CURRENT_TIMESTAMP)";
+	      				(?, ?, ?, ?)";
 	      $stmt = $dbh->prepare($sql);
-	      $stmt->execute(array($userData['ip'], $userData['port'], $userData['name']));
+	      $stmt->execute(array($userData['username'], $userData['email'], $userData['password'], $userData['salt']));
 	      $count = $stmt->rowCount();
 	      return $count;
 	    }
 	    catch(PDOException $e) {
-	      $errmsg = $e->getMessage();
-	      // parse errmsg
-	      $errors["generic"][] = "ERRO[14]: ".$errmsg;
-	      return $errors;
+	      echo $e->getMessage();
+	      die;
 	    }
 	}
+
+	function insertUserByFBID($userData) {
+	    global $dbh, $schema;
+	    try {
+	      $sql = "INSERT INTO $schema.BomberUser
+	      				(username, email, fbid, faceUser, password, salt) 
+	      			VALUES 
+	      				(?, ?, ?, ?, ?, ?)";
+	      $stmt = $dbh->prepare($sql);
+	      $stmt->execute(array($userData['username'], $userData['email'], $userData['fbid'], TRUE, $userData['password'], $userData['salt']));
+	      $count = $stmt->rowCount();
+	      return $count;
+	    }
+	    catch(PDOException $e) {
+	      echo $e->getMessage();
+	      die;
+	    }
+	}
+
 }
 
 ?>

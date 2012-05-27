@@ -22,40 +22,40 @@
 //			Dar opçao de apagar o registo do server?
 //			Verificar estado do server -> ping | usar a api (criar rest script imalive.php)
 require_once('includes/database.php');
-require_once('database/server.php');
+require_once('database/user.php');
 
-$serverData['ip']   = $_GET["ip"];
-$serverData['port'] = $_GET["port"];
-$serverData['name'] = $_GET["name"];
+$userData['username'] = $_GET["username"];
+$userData['password'] = $_GET["pw"];
+$userData['email']    = $_GET["email"];
 
 // Check input data
-if( $serverData['ip'] != null && $serverData['port']!= null && $serverData['name'] != null){
+if( $userData['username'] != null && $userData['password']!= null && $userData['email'] != null){
 	// Check server redundancy
-	if(Server::getServerByIPAndPort($serverData) == null){
-		// TODO Check the server;
-		//$_SERVER['REMOTE_ADDR'];
-		// TODO Check server name
-		$register = Server::registerServer($serverData);
+	if(User::getUserByMail($userData['email']) == null){
+	    $userData['salt'] = substr(md5(uniqid(rand(), true)) , 0, 32);
+      	$hpassword = hash('sha512', $userData['salt'] . $userData['password']);
+      	$userData['password'] = $hpassword;
+		$register = User::insertUserByEmail($userData);
 		if($register == 1){
-			showResult($result, $serverData);
+			showResult($result, $userData);
 		} else {
-			showError("Critical error registering server.", $serverData);
+			showError("Critical error registering user.", $userData);
 		}
 	} else {
-		showError("Adress already in use.", $serverData);
+		showError("Email already in use.", $userData);
 	}
 
 } else {
-	showError("Invalid data.", $serverData);
+	showError("Invalid data.", $userData);
 }
 
-function showError($error, $serverData){
+function showError($error, $userData){
 	echo json_encode(Array("error" => $error));
 	die;
 }
 
-function showResult($result, $serverData){
-	echo json_encode(Array("srvRegister" => $serverData));
+function showResult($result, $userData){
+	echo json_encode(Array("success" => "User registered."));
 	die;
 }
 

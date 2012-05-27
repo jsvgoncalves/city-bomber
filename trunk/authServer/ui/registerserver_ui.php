@@ -1,12 +1,12 @@
 <?php 
-
+	require_once('cfg/cfg.php');
 	$ip   = $_GET["ip"];
 	$port = $_GET["port"];
 	$name = urlencode($_GET["name"]);
 	// isset() wont work like this (string = "")
 	if($ip != null && $port != null && $name != null){
 		$string = "ip=$ip&port=$port&name=$name";
-		$hostPath = "http://localhost:8080/bomber/api/registerserver.php?";
+		$hostPath = $serverURL . "api/registerserver.php?";
 		
 		//Tries to register the server..
 		$msg =  file_get_contents($hostPath . $string);

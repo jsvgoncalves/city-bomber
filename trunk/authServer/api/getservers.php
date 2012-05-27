@@ -27,11 +27,6 @@
 require_once('includes/database.php');
 require_once('database/server.php');
 
-//TODO: Get inactive servers and query them to check for activity.
-//		Is this a thing to be done here? Discuss...
-// 		Prolly better to do this on gameserver side, ie, if a server is really
-//		offline, every user will have to wait for this check... If there are
-//		100 servers offline...
 echo json_encode(Array("srvList" => Server::getAllActiveServers()));
 
 ?>

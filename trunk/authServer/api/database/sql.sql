@@ -8,7 +8,7 @@ CREATE TABLE Server (
     ip VARCHAR(15) NOT NULL,
     port INTEGER NOT NULL,
     name VARCHAR(32) NOT NULL,
-    lastUpdated timestamp NOT NULL DEFAULT '2000-01-01 00:00:00',
+    lastUpdated timestamp NOT NULL DEFAULT '2013-01-01 00:00:00',
     UNIQUE(ip, port)
 );
 

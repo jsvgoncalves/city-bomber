@@ -30,8 +30,9 @@ $serverData['name'] = $_GET["name"];
 
 // Check input data
 if( $serverData['ip'] != null && $serverData['port']!= null && $serverData['name'] != null){
+	$pServer = Server::getServerByIPAndPort($serverData);
 	// Check server redundancy
-	if(Server::getServerByIPAndPort($serverData) == null){
+	if($pServer == null){
 		// TODO Check the server;
 		//$_SERVER['REMOTE_ADDR'];
 		// TODO Check server name
@@ -41,6 +42,9 @@ if( $serverData['ip'] != null && $serverData['port']!= null && $serverData['name
 		} else {
 			showError("Critical error registering server.", $serverData);
 		}
+	} else if($serverData['name'] == $pServer['name']) {
+		Server::updateServer($serverData);
+		showResult($result, $serverData);
 	} else {
 		showError("Adress already in use.", $serverData);
 	}

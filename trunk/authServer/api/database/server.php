@@ -51,7 +51,7 @@ class Server{
 	      $stmt->bindParam(':serverIP', $serverData['ip'], PDO::PARAM_INT);
 	      $stmt->bindParam(':serverPort', $serverData['port'], PDO::PARAM_INT);
 	      $stmt->execute();
-	      $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+	      $result = $stmt->fetch(PDO::FETCH_ASSOC);
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
@@ -78,6 +78,24 @@ class Server{
 	      die;
 	    }
 	}
+
+	function updateServer($serverData) {
+	    global $dbh, $schema;
+	    try {
+            $sql = "UPDATE $schema.Server 
+              SET lastUpdated = CURRENT_TIMESTAMP 
+              WHERE ip = ? AND port = ?";
+      		$stmt = $dbh->prepare($sql);
+      		$stmt->execute(array($serverData['ip'], $serverData['port']));
+      		$count = $stmt->rowCount();
+      		return $count;
+	    }
+	    catch(PDOException $e) {
+	      echo $e->getMessage();
+	      die;
+	    }
+	}
+
 }
 
 ?>

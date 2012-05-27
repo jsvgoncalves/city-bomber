@@ -16,8 +16,8 @@ class Server{
 	      return $result;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
   	}
 
@@ -35,8 +35,8 @@ class Server{
 	      return $result;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
   	}
 
@@ -55,8 +55,8 @@ class Server{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
     	}
 	}
 
@@ -74,8 +74,8 @@ class Server{
 	      return $count;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
 	}
 
@@ -91,8 +91,8 @@ class Server{
       		return $count;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
 	}
 

@@ -26,8 +26,8 @@ class User{
 		       return false;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
 	}
 
@@ -43,8 +43,8 @@ class User{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
     	}
 	}
 
@@ -60,8 +60,8 @@ class User{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
     	}
 	}
 
@@ -77,8 +77,8 @@ class User{
 	      return ($result);
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
     	}
 	}
 
@@ -95,8 +95,8 @@ class User{
 	      return $count;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
 	}
 
@@ -113,8 +113,8 @@ class User{
 	      return $count;
 	    }
 	    catch(PDOException $e) {
-	      echo $e->getMessage();
-	      die;
+			echo json_encode(Array("error" => "Database critical error."));
+			die;
 	    }
 	}
 
